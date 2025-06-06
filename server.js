@@ -7,10 +7,14 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: ['https://alezoo-front.vercel.app', 'http://localhost:3000'],
+  origin: true, // This allows all origins in development
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization']
 }));
+
+// Handle preflight requests
+app.options('*', cors());
 
 // Middleware
 app.use(express.json());
