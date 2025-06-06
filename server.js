@@ -6,16 +6,13 @@ require('dotenv').config();
 const app = express();
 
 // CORS configuration
-const corsOptions = {
+app.use(cors({
   origin: ['https://alezoo-front.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: true,
-  optionsSuccessStatus: 200
-};
+  credentials: true
+}));
 
 // Middleware
-app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
